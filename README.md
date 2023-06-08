@@ -1,26 +1,29 @@
-# ラズベリーパイ(32bit bullseye)用クロスビルド環境
+# Docker image with cross toolchains for Raspberry Pi OS
 
-Raspberry Pi OS(32bit Bullseye)向けのクロスビルドを行うためのDockerイメージを作成するためのリポジトリです。
+This is the repository for making docker image with cross-building toolchains for Raspberry Pi OS(32bit bullseye).
+Supporting CMake, autotools and simple Makefile build system.
+in addittion, it includes root filesystem of raspberry pi system, then you can
+run built-binaries using `qemu` and can debug it using `gdb`.
 
-[English](./README.md)
+[日本語](./README.ja.md)
 
-## 使い方
+## How to use
 
-1. イメージの作成
+1. Make docker image
     ```sh
     $ git clone https://github.com/kenyog/raspi-cross-toolchain-container.git
     $ cd raspi-cross-toolchain-container
     $ docker compose build
     ```
 
-2. コンテナ実行
+2. Run container
     ```sh
     $ docker compose up -d
     $ docker compose exec raspi-cross /bin/bash
     root@.....:/opt#
     ```
 
-3. サンプルプログラムのビルドと実行
+3. Build sample program.
     ```sh
     $ docker compose exec raspi-cross /bin/bash
     root@.....:/opt# cd build-test/sample_hello/
@@ -33,5 +36,4 @@ Raspberry Pi OS(32bit Bullseye)向けのクロスビルドを行うためのDock
     root@.....:/opt/build-test/sample_hello# file hello
     hello: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, for GNU/Linux 3.2.0, not stripped
     ```
-
 
